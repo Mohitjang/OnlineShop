@@ -1,0 +1,58 @@
+<%- include("../includes/head",{pageTitle:"Signup"}) %>
+<link rel="stylesheet" href="/styles/forms.css">
+<link rel="stylesheet" href="/styles/auth.css">
+</head>
+<body>
+    <%- include("../includes/header") %>
+    <main>
+        <h1>Create New Account</h1>
+        <form action="/signup" method="POST">
+            <p>
+                <label for="email">E-Mail</label>
+                <input type="email" id="email" name="email" required>
+            
+            </p>
+            <p>
+                <label for="confirmEmail">Confirm-Email</label>
+                <input type="text" id="confirmEmail" name="confirmEmail" required>
+            
+            </p>
+            <p>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            
+            </p>
+            <hr>
+            <p>
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </p>
+            <p>
+                <label for="street">Street</label>
+                <input type="text" id="street" name="street" required>
+                
+            </p>
+            <p>
+                <label for="postal">Postal Code</label>
+                <input type="text" id="postal" name="postal" minlength="6" maxlength="6" required>
+                
+            </p>
+            <p>
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" required>
+                
+            </p>
+            <button class="btn" type="submit">Create Account</button>
+            <p id="switch-form"><a href="/login">Login instead</a></p>
+            <!-- <label for="gender">Gender</label> -->
+            <!-- <input type="radio" id="gender" name="gender" required>
+            <option value="0">Male</option>
+            <option value="1">Female</option>
+            <option value="2">Others</option> -->
+            
+
+
+        </form>
+    </main>
+    <%- include("../includes/footer") %>
+    

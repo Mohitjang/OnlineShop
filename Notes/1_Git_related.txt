@@ -1,0 +1,4 @@
+Steps:-
+1. I created a github repofor this project.
+2. I cloned the github repo in my localcomputer.
+3. I initialized the git project in my local pc.

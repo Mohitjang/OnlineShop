@@ -1,0 +1,10 @@
+In this lecture we will make our signup functionality working
+
+Steps:-
+- create route of post signup
+- pass the controller functions in the route
+- write controller code which will take user input and validate and save credentials into to database.
+
+prerequisites:- 
+1. first we have to use urlencoded middleware to deal with the incoming requests.
+2. after that we have make connect with mongodb database to store data in database.

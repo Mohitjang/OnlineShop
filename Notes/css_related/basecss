@@ -1,0 +1,16 @@
+Steps:-
+
+1. making box sizing property to border-box 
+"* {box-sizing: "border-box" }"
+"which means the content will include the border. also, it's helful when we work with width of content"
+
+2. setting the default font family which can be accessible by whole website
+"html { font-family: "roboto"}
+
+3. creating global css variables for colors.
+
+    EXAMPLE = --variableName-type-hardness :  rgb(37, 34, 31)
+
+    --color-gray-500: rgb(37, 34, 31);
+    --color-gray-800: rgb(15, 15, 14);
+

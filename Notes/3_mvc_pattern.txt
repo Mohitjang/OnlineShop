@@ -1,0 +1,28 @@
+Steps:- video 538:-
+
+1. create folders:- 
+models,
+views,
+controllers,
+routes
+
+2. In views create folders:- (for cleanly structure different views files)
+ admin, 
+ customer => auth, cart, products
+
+3. in routes create files:- 
+ auth.route.js
+
+4. in controllers create files:- 
+ auth.controller.js
+
+5. create router in routes files and export it to use it in the app file using middleware.
+
+6. create controller methods in controller files and export it to use it in the routes file.
+7. create views in views folder and export it to use it in controllers file.
+8. create models classes in models folder and export it to use it in controllers file.
+
+9. construct router object from express object.
+    router = express.Router()
+
+    module.exports = router

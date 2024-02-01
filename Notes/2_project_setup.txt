@@ -1,0 +1,19 @@
+Steps:- 
+
+prerequisites:- 
+# install nodejs
+
+1. Initialize our node-express project. 
+    # npm init -y {default quetions automatically answered yes}
+
+2. install node dependencies:- 
+    # npm install express
+
+3. install node dev dependencies:- 
+    # npm install --save-dev nodemon {for automatically stop and start dev server}
+
+4. create app.js file and import express package.
+5. derive app object by executing express as a function.
+6. on this app object we can start listening to port number 3000
+
+project setup done!!!

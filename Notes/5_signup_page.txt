@@ -1,0 +1,16 @@
+In this we gonna make signup page:- 
+
+
+form 
+input firstname
+input lastname
+input email
+input confirm email
+input password
+input radio gender
+input country
+input city
+input postal code
+input address
+input mobile number
+button submit

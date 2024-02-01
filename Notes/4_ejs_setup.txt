@@ -1,0 +1,22 @@
+Steps:- video 539:-
+
+In this lecture we will learn about how to setup our app to use ejs concept:- 
+
+1. create folders in the views folder as per of the views.
+i.e. admin, customer
+
+2. and create more folders to make life easy to work with the file according to their functionality.
+i.e. auth, cart, products
+
+3. open terminal and install ejs package.
+
+4. in app.js we need to activate this package. 
+=> like we telling app.js that we will use ejs to render the html pages.
+
+5. we need to set two options in our app object:- 
+app.set("view engine","ejs); // we are setting "view engine" option to "ejs"
+app.set("view",path.join(__dirname, "views", "customer", "auth")); // we are telling type and path folder where files lies.
+
+6. now we can use ejs templates files as html files.
+7. goto views folders and write ejs files.
+i.e. in auth folder we can write login.ejs and signup.ejs files.
