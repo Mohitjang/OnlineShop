@@ -11,9 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "connect-mongodb-session": "^2.2.0",
+    "csurf": "^1.11.0",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "mongodb": "^6.3.0"
+    "express-session": "^1.18.0",
+    "mongodb": "^6.3.0",
+    "mpath": "^0.8.4"
   },
   "devDependencies": {
     "nodemon": "^3.0.3"

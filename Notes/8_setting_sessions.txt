@@ -1,0 +1,54 @@
+In this we gonna set up the sessions from scrach:- 
+
+Steps:-
+1. install third party packages for working with sessions:-
+   for using sessions with express #npm install express-session
+   for connection session with mongodb database #npm install connect-mongodb-session 
+
+2. Create config folder and session.js file.
+3. and now we will write our session related code in this file.
+
+    In session.js >>
+5. import both the packages:
+const mongoDbStore = require("connect-mongodb-session");
+
+6. In this we gonna create mongoDbStore function and craeteSessionConfig function:
+
+            const expressSession = require("express-session");
+            const mongoDbStore = require("connect-mongodb-session");
+
+            // creating session store NOT session:- so we need express session as an agument in this.
+            function createSessionStore() {
+            const MongoDbStore = mongoDbStore(expressSession);
+
+            //   initialize new store object using mongodbstore constructor which is given by package:-
+            const store = new MongoDbStore({
+                uri: "mongodb://localhost:27017",
+                databaseName: "online-shop",
+                collection: "sessions",
+            });
+            return store;
+            }
+
+            function createSessionConfig() {
+            return {
+                secret: "super-secret",
+                resave: true,
+                saveUninitialized: true,
+                store: createSessionStore(),
+                cookie: {
+                maxAge: 30 * 24 * 60 * 60 * 1000, //30 days
+                },
+            };
+            }
+
+            module.exports = createSessionConfig;
+
+
+7. and export the craeteSessionConfig function to the app.js file where we will gonna create sessions.
+
+8. use this line:- 
+app.use(expressSession(craeteSessionConfig()))
+
+the end!
+

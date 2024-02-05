@@ -1,39 +1,30 @@
 const db = require("../data/database");
 
-function dataIsValid(
-  email,
-  confirmEmail,
-  password,
-  fullName,
-  street,
-  postal,
-  city
-) {
+function isEmpty(value) {
+  return !value || value.trim() === "";
+}
+
+function userCredentialsAreValid(email, password) {
   return (
-    email &&
-    confirmEmail &&
-    password &&
-    fullName &&
-    street &&
-    postal &&
-    city &&
-    email === confirmEmail &&
-    password.length >= 6 &&
-    postal.length == 6 &&
-    email.includes("@")
+    email && email.includes("@") && password && password.trim().length >= 6
   );
 }
 
-// async function userExists(enteredEmail) {
+function userDetailsAreValid(email, password, fullName, street, postal, city) {
+  return (
+    userCredentialsAreValid(email, password) &&
+    !isEmpty(fullName) &&
+    !isEmpty(street) &&
+    !isEmpty(postal) &&
+    !isEmpty(city)
+  );
+}
 
-//   const userExists = await db
-//     .getDb()
-//     .collection("users")
-//     .findOne({ email: enteredEmail });
-//   return userExists;
-// }
+function emailIsConfirmed(email, confirmEmail) {
+  return email === confirmEmail;
+}
 
 module.exports = {
-  dataIsValid: dataIsValid,
-  // userExists: userExists,
+  userDetailsAreValid: userDetailsAreValid,
+  emailIsConfirmed: emailIsConfirmed,
 };

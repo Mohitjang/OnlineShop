@@ -1,0 +1,19 @@
+In this we gonna set the csrf token for safety form csrf attacks:- 
+
+Step 1:- install csurf package.
+Step 2:- import csurf package in app.js file.
+Step 3:- use csurf middleware before the routes of our backend.
+    app.use(csrf())
+Step 4:- create csrf token middleware file in middleware folder.
+    In this middleware we gonna set res.locals.csrfToken = req.csrfToken()
+    exapmle:-   res.locals.csrfToken = req.csrfToken(); // inbuilt method in csurf package.
+
+Step 5:- now use that csrf token in our ejs templates wherever we are using forms:- 
+example:-    <input type="hidden" name="_csrf"  value="<%= locals.csrfToken %>">
+
+Step 6:- now use csrfToken middleware after the csrf middleware.
+
+the end!
+
+
+
