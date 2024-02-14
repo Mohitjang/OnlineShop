@@ -5,7 +5,7 @@
 <body>
     <%- include("../../shared/includes/header") %>
     <main>
-        <h1>Create New Account</h1>
+        <h1>Login into Account</h1>
         <form action="/login" method="POST">
             <input type="hidden" name="_csrf"  value="<%= locals.csrfToken %>">
             <% if(inputData.error){ %>
@@ -26,7 +26,7 @@
                 <input type="password" id="password" name="password" value="<%= inputData.password %>" required>
              
             </p>
-             <button class="btn" type="submit">Create Account</button>
+             <button class="btn" type="submit">Login</button>
             <p id="switch-form"><a href="/signup">Create a new user</a></p>
 
 

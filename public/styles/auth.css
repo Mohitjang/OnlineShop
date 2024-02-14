@@ -9,7 +9,7 @@ form {
   padding: var(--space-4);
   background-color: var(--color-gray-600);
   border-radius: var(--border-radius-medium);
-  text-align: center;
+  /* text-align: center; */
 }
 
 form a {
