@@ -1,3 +1,4 @@
+const mongodb = require("mongodb");
 const db = require("../data/database");
 
 class Product {
@@ -7,12 +8,33 @@ class Product {
     this.description = productData.description;
     this.price = +productData.price;
     this.image = productData.image; // the name of the image file
-    this.imagePath = `product-data/images/${productData.image}`;
-    this.imageUrl = `/products/assets/images/${productData.image}`;
-
+    this.updateImageData();
     if (productData._id) {
-      this._id = productData._id.toString();
+      this.id = productData._id.toString();
     }
+  }
+
+  static async findById(productId) {
+    let prodId;
+    try {
+      prodId = new mongodb.ObjectId(productId);
+    } catch (error) {
+      error.code = 404;
+      throw error;
+    }
+
+    const product = await db
+      .getDb()
+      .collection("products")
+      .findOne({ _id: prodId });
+
+    if (!product) {
+      const error = new Error("could not find product by id.");
+      error.code = 404;
+      throw error;
+    }
+
+    return new Product(product);
   }
 
   static async findAll() {
@@ -34,11 +56,54 @@ class Product {
       description: this.description,
       image: this.image,
     };
-    const result = await db
-      .getDb()
-      .collection("products")
-      .insertOne(productData);
+
+    if (this.id) {
+      const productId = new mongodb.ObjectId(this.id);
+
+      if (!this.image) {
+        delete productData.image;
+      }
+
+      const result = await db.getDb().collection("products").updateOne(
+        { _id: productId },
+        {
+          $set: productData,
+        }
+      );
+      console.log("product updated successfully!");
+    } else {
+      const result = await db
+        .getDb()
+        .collection("products")
+        .insertOne(productData);
+      console.log("product added successfully!");
+    }
   }
+
+  updateImageData() {
+    this.imagePath = `product-data/images/${this.image}`;
+    this.imageUrl = `/products/assets/images/${this.image}`;
+  }
+
+  replaceImage(newImage) {
+    this.image = newImage;
+    this.updateImageData();
+  }
+  
+  static async delete(prodId) {
+    let productId;
+    try {
+      productId = new mongodb.ObjectId(prodId);
+    } catch (error) {
+      error.code = 404;
+      throw error;
+    }
+
+    await db.getDb().collection("products").deleteOne({ _id: productId });
+
+    console.log("product deleted successfully!");
+  }
+
 }
 
 module.exports = Product;

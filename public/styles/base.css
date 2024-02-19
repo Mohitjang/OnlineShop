@@ -58,33 +58,41 @@ ol {
   padding: 0;
 }
 
-a{
-    text-decoration: none;
-    color: var(--color-primary-400);
+a {
+  text-decoration: none;
+  color: var(--color-primary-400);
 }
 
-.btn{
-    cursor: pointer;
-    font: inherit;
-    padding: var(--space-2) var(--space-6);
-    background-color: var(--color-primary-500);
-    color: var(--color-primary-500-contrast);
-    border: 1px solid var(--color-primary-500);
-    border-radius: var(--border-radius-small);
+.btn {
+  cursor: pointer;
+  font: inherit;
+  padding: var(--space-2) var(--space-6);
+  background-color: var(--color-primary-500);
+  color: var(--color-primary-500-contrast);
+  border: 1px solid var(--color-primary-500);
+  border-radius: var(--border-radius-small);
 }
 
-.btn-alt{
+.btn-alt {
   background-color: transparent;
   color: var(--color-primary-100);
 }
 
 .btn-alt:hover,
-.btn-alt:active{
+.btn-alt:active {
   background-color: var(--color-primary-500-bg);
 }
 
 .btn:hover,
-.btn:active{
-    background-color: var(--color-primary-700);
-    border-color: var(--color-primary-700);
+.btn:active {
+  background-color: var(--color-primary-700);
+  border-color: var(--color-primary-700);
+}
+
+.badge {
+  margin-left: var(--space-2);
+  padding: 0.15rem var(--space-4);
+  border-radius: 10rem;
+  background-color: var(--color-primary-500);
+  color: var(--color-primary-500-contrast);
 }

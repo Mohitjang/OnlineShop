@@ -1,0 +1,63 @@
+video 574 - 576:- Adding a cart model
+
+steps:- 
+1. when user click on the addtocart button
+2. the product must add to the cart which is stored in the session storage if user is not loggedin.
+3. if user log in later then session data must be stored in the cart collection.
+
+we need: -
+cart model
+
+cart controller
+
+
+Steps to do this :- 
+1. create cart model:-
+2. create constructor which takes array of items but an empty array as a default value.
+3. create addItem method which allows user to add a new item into this cart array.
+        Example:-
+                addItem(product) {
+                    const cartItem = {
+                    product: product,
+                    quantity: 1,
+                    totalPrice: product.price,
+                    };
+                    // check is product exists in the cart:-
+                    for (let i = 0; i < this.items.length; i++) {
+                    const item = this.items[i];
+                    if (item.product.id === product.id) {
+                        cartItem.quantity = cartItem.quantity + 1;
+                        cartItem.totalPrice = cartItem.totalPrice + product.price;
+                        this.items[i] = cartItem;
+                        return;
+                    }
+                    }
+
+                    // if product is not exist in the cart array
+                    this.items.push(cartItem);
+                }
+
+4. create cart controller file:- 
+5. create addCartItem fucntion:- 
+6. but before moving forward we have to create one cart middleware:- 
+  -to check that the user do have a cart or doesn't have a cart yet.
+  Example:- 
+                const Cart = require("../models/cart.model");
+
+                function initializeCart(req, res, next) {
+                let cart;
+
+                if (!req.session.cart) {
+                    cart = new Cart();
+                } else {
+                    cart = new Cart(req.session.cart.items);
+                }
+
+                res.locals.cart = cart;
+                next();
+                }
+
+                module.exports = initializeCart;
+
+7. but we are not looking for storing cart data in the database from starting instead we want to add data in the session storage.
+8. look more in the code!!!

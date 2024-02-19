@@ -1,6 +1,8 @@
 <%- include("../../shared/includes/head",{pageTitle:"Signup"}) %>
 <link rel="stylesheet" href="/styles/forms.css">
 <link rel="stylesheet" href="/styles/auth.css">
+<link rel="stylesheet" href="/styles/products.css">
+<script src="/scripts/product-management.js" defer></script>
 </head>
 <body> 
     <%- include("../../shared/includes/header") %>
@@ -11,23 +13,14 @@
             <p><a href="/admin/products/new" class="btn">Add Product</a></p>
         </section>
         <section>
-            <h2>Products</h2>
-            <ul>
+            <h2>Products (<%= products.length %>)</h2>
+            <ul id="products-grid">
                 <% for(const product of products) {%>
                 <li>
-                    <article>
-                        <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
-                        <h3><%= product.title %></h3>
-                        <p><%= product.summary %></p>
-                        <p><%= product.price %></p>
-                        <p><%= product.description %></p>
-                        <a class="btn btn-alt" href="/admin/products/" <%= product.id %>>Edit</a>
-                        <button class="btn btn-alt">Delete</button>
-                    </article>
+                    <%- include("../../shared/includes/product-item", {product:product}) %>
                 </li>
                 <% } %>
             </ul>
         </section>
     </main>
     <%- include("../../shared/includes/footer") %>
-    

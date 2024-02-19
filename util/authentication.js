@@ -16,6 +16,8 @@ function destroyUserAuthSession(req) {
   req.session.user.isAdmin = null;
 }
 
+
+
 module.exports = {
   createUserSession: createUserSession,
   destroyUserAuthSession: destroyUserAuthSession,
