@@ -90,7 +90,7 @@ async function deleteProduct(req, res, next) {
 async function getAllOrders(req, res, next) {
   try {
     const orders = await Order.findAll();
-    res.render("admin/order/all-orders", { orders: orders });
+    res.render("admin/order/admin-orders", { orders: orders });
   } catch (error) {
     next(error);
     return;
