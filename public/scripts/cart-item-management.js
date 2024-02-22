@@ -25,7 +25,7 @@ async function updateCartItem(event) {
       headers: {
         "Content-Type": "application/json",
       },
-    });
+    }); 
   } catch (error) {
     alert("Something wrong in update cart function!!!");
     return;
@@ -37,15 +37,20 @@ async function updateCartItem(event) {
   }
 
   const responseData = await response.json();
+  console.log(responseData.updatedCartData);
 
-  console.log(responseData);
+  if (responseData.updatedCartData.updatedItemPrice === 0) {
+    form.parentElement.parentElement.remove();
+  } else {
+    const cartItemTotalPriceElement =
+      form.parentElement.querySelector(".cart-item-price");
+    cartItemTotalPriceElement.textContent =
+      responseData.updatedCartData.updatedItemPrice.toFixed(2);
+  }
 
-  const cartItemTotalPriceElement =
-    form.parentElement.querySelector(".cart-item-price");
-
-  cartItemTotalPriceElement.textContent = responseData.updatedCartData.updatedItemPrice;
-  cartTotalPriceElement.textContent = responseData.updatedCartData.newTotalPrice.toFixed(2);
-  cartBadgeElement.textContent = responseData.updatedCartData.newTotalItems;
+  cartTotalPriceElement.textContent =
+    responseData.updatedCartData.newTotalPrice.toFixed(2);
+  cartBadgeElement.textContent = responseData.updatedCartData.newTotalQuantity;
 }
 
 for (const formElement of cartItemUpdateFormElements) {

@@ -1,0 +1,58 @@
+h1{
+  color: var(--color-gray-200);
+  text-align: left;
+}
+
+.order-item {
+  background-color: var(--color-gray-400);
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--border-radius-medium);
+  margin-bottom: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.order-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  /* font-weight: lighter; */
+}
+
+.badge{
+  font-size: 1rem;
+}
+
+.order-total-price {
+  color: var(--color-primary-500);
+  font-weight: 500;
+}
+
+.order-date {
+  font-weight: 500;
+}
+
+.product-details{
+  font-weight: 500;
+  font-size: 0.90rem;
+  list-style: square;
+  margin-left:2rem;
+}
+
+.product-details p{
+padding: var(--space-1) 0;
+  margin: 0;
+}
+
+.address-bold{
+  font-weight: 600;
+}
+
+.user-details p{  
+  padding: var(--space-2);
+  margin: 0;
+} 
+
+.order-actions{
+  
+}

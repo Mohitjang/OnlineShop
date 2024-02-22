@@ -11,6 +11,7 @@ const authRoutes = require("./routes/auth.routes");
 const productRoutes = require("./routes/products.routes");
 const adminRoutes = require("./routes/admin.routes");
 const cartRoutes = require("./routes/cart.routes");
+const orderRoutes = require("./routes/order.routes");
 
 const addCsrfTokenMiddleware = require("./middlewares/csrf-token");
 const errorHandlerMiddleware = require("./middlewares/error-handler");
@@ -42,6 +43,7 @@ app.use(authRoutes);
 app.use(productRoutes);
 app.use("/cart", cartRoutes);
 app.use(protectRoutesMiddleware);
+app.use("/orders", orderRoutes);
 app.use("/admin", adminRoutes); // /admin/product or else routes
 
 app.use(errorHandlerMiddleware);

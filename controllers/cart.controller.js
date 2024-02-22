@@ -10,7 +10,7 @@ async function addCartItem(req, res, next) {
     return;
   }
 
-  const cart = res.locals.cart;
+  const cart = res.locals.cart; 
   cart.addItem(product);
   req.session.cart = cart;
 
@@ -26,19 +26,16 @@ function getCart(req, res, next) {
 
 async function updateCartItem(req, res, next) {
   const productId = req.body.productId;
-  const newQuantity = req.body.quantity;
+  const newQuantity = +req.body.quantity;
 
   const cart = res.locals.cart;
   const updatedItemData = cart.updateItem(productId, newQuantity);
-  console.log("==========================================================");
-  console.log(updatedItemData);
-  console.log("==========================================================");
   req.session.cart = cart;
 
   res.status(201).json({
-    message: "successfully updated !!!",
+    message: "Item updated !!!",
     updatedCartData: {
-      newTotalItems: cart.totalQuantity,
+      newTotalQuantity: cart.totalQuantity,
       newTotalPrice: cart.totalPrice,
       updatedItemPrice: updatedItemData.updatedItemPrice,
     },

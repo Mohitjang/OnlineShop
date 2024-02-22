@@ -4,7 +4,7 @@ const imageUploadMiddleware = require("../middlewares/image-upload");
 
 const router = express.Router();
 
-router.get("/products", adminController.getProducts);
+router.get("/products", adminController.getProducts); // /admin/products
 
 router.get("/products/new", adminController.getNewProduct);
 
@@ -23,5 +23,10 @@ router.post(
 );
 
 router.delete("/products/:id", adminController.deleteProduct);
+
+router.get("/orders",adminController.getAllOrders)
+
+router.patch("/orders/:id",adminController.updateOrder)
+
 
 module.exports = router;

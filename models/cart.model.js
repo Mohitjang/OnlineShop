@@ -9,16 +9,17 @@ class Cart {
     const cartItem = {
       product: product,
       quantity: 1,
-      totalPrice: product.price,
+      totalPrice: product.price, 
     };
     // check is product exists in the cart:-
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
       if (item.product.id === product.id) {
-        cartItem.quantity = item.quantity + 1;
-        cartItem.totalPrice = (item.quantity + 1) * product.price;
+        cartItem.quantity = +item.quantity+ 1;
+        const cartItemTotalPrice =(+item.quantity +1)* product.price;
+        cartItem.totalPrice = cartItemTotalPrice;
+ 
         this.items[i] = cartItem;
-
         this.totalQuantity++;
         this.totalPrice += product.price;
         return;
@@ -35,13 +36,15 @@ class Cart {
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
       const oldQuantity = item.quantity;
+      const changeQuantity = newQuantity - oldQuantity;
+    
       if (item.product.id === productId && newQuantity > 0) {
         item.quantity = newQuantity;
         item.totalPrice = item.product.price * newQuantity;
 
-        this.totalQuantity += newQuantity - oldQuantity;
-        this.totalPrice += (newQuantity - oldQuantity) * item.product.price;
-        console.log(item.totalPrice)
+        this.totalQuantity += changeQuantity;
+        this.totalPrice += changeQuantity * item.product.price;
+        console.log(item.totalPrice);
         return { updatedItemPrice: item.totalPrice };
       } else if (item.product.id === productId && newQuantity <= 0) {
         this.items.splice(i, 1);

@@ -16,6 +16,10 @@ function initializeCart(req, res, next) {
   }
 
   res.locals.cart = cart;
+  // console.log("locals cart");
+  // console.log(res.locals.cart);
+  // console.log("session cart");
+  // console.log(req.session.cart);
   next();
 }
 
