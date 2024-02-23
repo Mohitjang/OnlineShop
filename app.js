@@ -19,6 +19,12 @@ const checkAuthStatusMiddleware = require("./middlewares/check-auth");
 const protectRoutesMiddleware = require("./middlewares/protect-routes");
 const cartMiddleware = require("./middlewares/cart");
 
+let post = 3000;
+
+if (process.env.PORT) {
+  port = process.env.PORT;
+}
+
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -48,9 +54,9 @@ app.use("/admin", adminRoutes); // /admin/product or else routes
 
 app.use(errorHandlerMiddleware);
 
-db.connectToDatabase() 
-  .then(function () { 
-    app.listen(3000);
+db.connectToDatabase()
+  .then(function () {
+    app.listen(post);
   })
   .catch(function (error) {
     console.log("failed to connect to database!");
