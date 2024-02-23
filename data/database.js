@@ -5,7 +5,7 @@ const MongoClient = mongodb.MongoClient;
 
 let mongodbUrl = "mongodb://localhost:27017";
 
-console.log("MongoDb: ",process.env.MONGODB_URI);
+console.log("MongoDb: ", process.env.MONGODB_URI);
 if (process.env.MONGODB_URI) {
   mongodbUrl = process.env.MONGODB_URI;
 }
@@ -13,10 +13,14 @@ if (process.env.MONGODB_URI) {
 let database;
 
 async function connectToDatabase() {
-  const client = await MongoClient.connect(mongodbUrl);
-
-  database = client.db("online-shop");
-  console.log("connected to mongodb successfully: " + mongodbUrl);
+  try {
+    const client = await MongoClient.connect(mongodbUrl);
+    database = client.db("online-shop");
+    console.log("connected to mongodb successfully: " + mongodbUrl);
+  } catch (error) {
+    console.log(`this is the mongourl: ${mongodbUrl}
+    Database is not connecting... ${error}`);
+  }
 }
 
 function getDb() {
