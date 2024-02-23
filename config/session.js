@@ -1,5 +1,17 @@
+require("dotenv").config();
+
 const session = require("express-session");
 const mongoDbStore = require("connect-mongodb-session");
+
+
+let mongodbUrl = "mongodb://localhost:27017";
+// let mongodbUrl = process.env.MONGODB_URI;
+console.log("MongoDb: ", process.env.MONGODB_URI);
+
+if (process.env.MONGODB_URI) {
+  mongodbUrl = process.env.MONGODB_URI;
+}
+
 
 // creating session store NOT session:- so we need express session as an agument in this.
 function createSessionStore() {
@@ -7,7 +19,7 @@ function createSessionStore() {
 
   //   initialize new store object using mongodbstore constructor which is given by package:-
   const store = new MongoDbStore({
-    uri: "mongodb://localhost:27017",
+    uri: mongodbUrl,
     databaseName: "online-shop",
     collection: "sessions",
   });
