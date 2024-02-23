@@ -12,9 +12,14 @@ if (process.env.MONGODB_URI) {
 
 let database;
 
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
 async function connectToDatabase() {
   try {
-    const client = await MongoClient.connect(mongodbUrl);
+    const client = await MongoClient.connect(mongodbUrl, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     database = client.db("online-shop");
     console.log("connected to mongodb successfully: " + mongodbUrl);
   } catch (error) {
