@@ -22,7 +22,7 @@ const cartMiddleware = require("./middlewares/cart");
 let port = 3000;
 
 if (process.env.PORT) {
-  console.log(process.env.PORT);
+  // console.log(process.env.PORT);
   port = process.env.PORT;
 }
 
@@ -55,7 +55,7 @@ app.use("/admin", adminRoutes); // /admin/product or else routes
 
 app.use(errorHandlerMiddleware);
 
-console.log("the port no is : ", port);
+console.log("The port no is : ", port);
 db.connectToDatabase()
   .then(function () {
     app.listen(port);

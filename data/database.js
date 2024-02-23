@@ -5,7 +5,7 @@ const MongoClient = mongodb.MongoClient;
 
 let mongodbUrl = "mongodb://localhost:27017";
 
-console.log(process.env.MONGODB_URI);
+console.log("MongoDb: ",process.env.MONGODB_URI);
 if (process.env.MONGODB_URI) {
   mongodbUrl = process.env.MONGODB_URI;
 }
