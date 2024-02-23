@@ -16,10 +16,7 @@ let database;
 
 async function connectToDatabase() {
   try {
-    const client = await MongoClient.connect(mongodbUrl, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    const client = await MongoClient.connect(mongodbUrl);
     database = client.db("online-shop");
     console.log("connected to mongodb successfully: " + mongodbUrl);
   } catch (error) {
