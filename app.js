@@ -19,9 +19,10 @@ const checkAuthStatusMiddleware = require("./middlewares/check-auth");
 const protectRoutesMiddleware = require("./middlewares/protect-routes");
 const cartMiddleware = require("./middlewares/cart");
 
-let post = 3000;
+let port = 3000;
 
 if (process.env.PORT) {
+  console.log(process.env.PORT)
   port = process.env.PORT;
 }
 
@@ -56,9 +57,11 @@ app.use(errorHandlerMiddleware);
 
 db.connectToDatabase()
   .then(function () {
-    app.listen(post);
+    console.log(port)
+    app.listen(port);
   })
   .catch(function (error) {
     console.log("failed to connect to database!");
     console.log(error);
   });
+ 
