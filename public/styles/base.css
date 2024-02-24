@@ -96,3 +96,40 @@ a {
   background-color: var(--color-primary-500);
   color: var(--color-primary-500-contrast);
 }
+
+#footer {
+  max-width: 100%;
+  padding: 5rem 0;
+  background-image: linear-gradient(
+    360deg,
+    var(--color-gray-500),
+    var(--color-gray-700)
+  );
+
+  /* background-color: var(--color-gray-500); */
+  text-align: center;
+  margin: 10rem 0;
+}
+
+.footer-section {
+  color: var(--color-gray-200);
+}
+
+.footer-section.links h3 {
+  color: var(--color-gray-300);
+  padding: 1rem;
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+.footer-section.links {
+  margin-bottom: 3rem;
+}
+
+.footer-section.links li {
+  padding: 0.5rem;
+}
+
+.footer-bottom {
+  color: var(--color-gray-300);
+}
