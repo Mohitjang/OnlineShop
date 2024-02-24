@@ -76,7 +76,7 @@ async function deleteProduct(req, res, next) {
     await Product.delete(productId);
   } catch (error) {
     next(error);
-    console.log("product deleted successfully2");
+    console.log("product deleted successfully");
     console.log(error);
   }
 
