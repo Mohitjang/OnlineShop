@@ -16,7 +16,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "products/data/images",
+    folder: "products-data/images",
     allowed_formats: ["jpg", "jpeg", "png"],
   },
 });
@@ -45,7 +45,7 @@ const configuredMulterMiddleware = async (req, res, next) => {
         // An unknown error occurred when uploading.
         return res.status(500).json({ error: "Unknown error occurred" });
       }
-      
+
       // Upload the file to Cloudinary
       const cloudinaryResponse = await uploadOnCloudinary(req.file.path);
       if (!cloudinaryResponse) {

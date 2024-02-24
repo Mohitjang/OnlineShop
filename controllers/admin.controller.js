@@ -15,7 +15,7 @@ async function getProducts(req, res, next) {
 }
 
 function getNewProduct(req, res) {
-  res.render("../views/admin/products/new-product");
+  res.render("../views/admin/products/new-product"); 
 }
 
 async function createNewProduct(req, res, next) {
