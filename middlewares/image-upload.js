@@ -25,7 +25,7 @@ const storage = new CloudinaryStorage({
       // Then return the parameters object
       return {
         folder: "products-data/images",
-        format: ["jpg", "jpeg", "png"],
+        allowed_formats: ["jpg", "jpeg", "png"],
         public_id: public_id,
       };
     } catch (error) {
