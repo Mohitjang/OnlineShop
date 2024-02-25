@@ -19,17 +19,20 @@ function getNewProduct(req, res) {
 }
 
 async function createNewProduct(req, res, next) {
+  console.log("imageUploadMiddleware is finished:- ");
+  console.log("req.file object given by middleware:- ", req.file);
 
   console.log("create new product is running: ");
-  console.log("req.file.filename: ",req.file.filename);
-  console.log("req.imageName: ",req.imageName);
-  console.log("req.cloudinaryUrl: ",req.cloudinaryUrl);
+  console.log("req.file.filename: ", req.file.filename);
+  console.log("req.imageName: ", req.imageName);
+  console.log("req.cloudinaryUrl: ", req.cloudinaryUrl);
   const productData = {
     ...req.body,
-    image: req.imageName,
-    imageUrl: req.cloudinaryUrl,
+    image: req.file.filename,
+    imageUrl: req.file.path,
   };
-
+  // image: req.imageName,
+  // imageUrl: req.cloudinaryUrl,
 
   const newProduct = new Product(productData);
   // console.log(req.body);

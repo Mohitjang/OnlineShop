@@ -18,6 +18,7 @@ const storage = new CloudinaryStorage({
   params: {
     folder: "products-data/images",
     allowed_formats: ["jpg", "jpeg", "png"],
+    public_id: uuid() + "-" + file.originalname,
   },
 });
 
@@ -35,44 +36,41 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage: storage });
 
-const configuredMulterMiddleware = async (req, res, next) => {
-  try {
-    upload.single("image")(req, res, async function (err) {
-      if (err instanceof multer.MulterError) {
-        // A Multer error occurred when uploading.
-        return res.status(500).json({ error: err.message });
-      } else if (err) {
-        // An unknown error occurred when uploading.
-        return res.status(500).json({ error: "Unknown error occurred" });
-      }
-
-      // Upload the file to Cloudinary
-      console.log("fileUploadMiddleware is running:");
-      console.log(
-        "req.file object (which is uploaded on cloudinary) :  ",
-        req.file
-      );
-      const cloudinaryResponse = await uploadOnCloudinary(req.file.path);
-      if (!cloudinaryResponse) {
-        return res
-          .status(500)
-          .json({ error: "Failed to upload to Cloudinary" });
-      }
-
-      // Set the Cloudinary URL or any other relevant data in the request object for further processing if needed
-      req.cloudinaryUrl = cloudinaryResponse.secure_url;
-      req.imageName = cloudinaryResponse.public_id;
-
-      // Pass control to the next middleware or route handler
-      next();
-    });
-  } catch (error) {
-    console.error("Error in imageUploadMiddleware:", error);
-    return res.status(500).json({ error: "Internal server error" });
-  }
-};
-
 // name of the image attribute
-// const configuredMulterMiddleware = upload.single("image");
+const configuredMulterMiddleware = upload.single("image");
+
+// const configuredMulterMiddleware = async (req, res, next) => {
+//   try {
+//     upload.single("image")(req, res, async function (err) {
+//       if (err instanceof multer.MulterError) {
+//         // A Multer error occurred when uploading.
+//         return res.status(500).json({ error: err.message });
+//       } else if (err) {
+//         // An unknown error occurred when uploading.
+//         return res.status(500).json({ error: "Unknown error occurred" });
+//       }
+//       // Upload the file to Cloudinary
+//       console.log("fileUploadMiddleware is running:");
+//       console.log(
+//         "req.file object (which is uploaded on cloudinary) :  ",
+//         req.file
+//       );
+//       const cloudinaryResponse = await uploadOnCloudinary(req.file.path);
+//       if (!cloudinaryResponse) {
+//         return res
+//           .status(500)
+//           .json({ error: "Failed to upload to Cloudinary" });
+//       }
+//       // Set the Cloudinary URL or any other relevant data in the request object for further processing if needed
+//       req.cloudinaryUrl = cloudinaryResponse.secure_url;
+//       req.imageName = cloudinaryResponse.public_id;
+//       // Pass control to the next middleware or route handler
+//       next();
+//     });
+//   } catch (error) {
+//     console.error("Error in imageUploadMiddleware:", error);
+//     return res.status(500).json({ error: "Internal server error" });
+//   }
+// };
 
 module.exports = configuredMulterMiddleware;
