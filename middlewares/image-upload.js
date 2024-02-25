@@ -24,7 +24,7 @@ const storage = new CloudinaryStorage({
       // Wait for asynchronous operations to complete
       // Then return the parameters object
       return {
-        folder: folder,
+        folder: "products-data/images",
         format: ["jpg", "jpeg", "png"],
         public_id: public_id,
       };
