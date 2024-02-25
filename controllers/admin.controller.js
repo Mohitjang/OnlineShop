@@ -20,11 +20,13 @@ function getNewProduct(req, res) {
 
 async function createNewProduct(req, res, next) {
 
-  console.log("create new product is running: ",req.file.filename);
+  console.log("create new product is running: ");
   console.log("req.file.filename: ",req.file.filename);
+  console.log("req.imageName: ",req.imageName);
+  console.log("req.cloudinaryUrl: ",req.cloudinaryUrl);
   const productData = {
     ...req.body,
-    image: req.file.filename,
+    image: req.imageName,
     imageUrl: req.cloudinaryUrl,
   };
 
@@ -33,8 +35,6 @@ async function createNewProduct(req, res, next) {
   // console.log(req.body);
   // console.log(req.file);
   try {
-    console.log("image file name / req.file.filename : ",req.file.filename)
-    console.log("image url / req.cloudinaryUrl : ",req.cloudinaryUrl)
     await newProduct.save();
   } catch (error) {
     next(error);

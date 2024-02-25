@@ -48,7 +48,10 @@ const configuredMulterMiddleware = async (req, res, next) => {
 
       // Upload the file to Cloudinary
       console.log("fileUploadMiddleware is running:");
-      console.log("req.file.path (which is uploaded on cloudinary) :  ", req.file.path);
+      console.log(
+        "req.file object (which is uploaded on cloudinary) :  ",
+        req.file
+      );
       const cloudinaryResponse = await uploadOnCloudinary(req.file.path);
       if (!cloudinaryResponse) {
         return res
@@ -57,7 +60,8 @@ const configuredMulterMiddleware = async (req, res, next) => {
       }
 
       // Set the Cloudinary URL or any other relevant data in the request object for further processing if needed
-      req.cloudinaryUrl = cloudinaryResponse.url;
+      req.cloudinaryUrl = cloudinaryResponse.secure_url;
+      req.imageName = cloudinaryResponse.public_id;
 
       // Pass control to the next middleware or route handler
       next();
