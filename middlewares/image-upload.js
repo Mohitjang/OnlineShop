@@ -15,11 +15,20 @@ cloudinary.config({
 // Configure multer to use Cloudinary as storage
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  params: {
-    folder: "products-data/images",
-    allowed_formats: ["jpg", "jpeg", "png"],
-    public_id: uuid() + "-" + file.originalname,
+  params: async (req, file) => {
+    // async code using `req` and `file`
+    // ...
+    return {
+      folder: "products-data/images",
+      format: ["jpg", "jpeg", "png"],
+      public_id: uuid() + "-" + file.originalname,
+    };
   },
+  // params: {
+  //   folder: "products-data/images",
+  //   allowed_formats: ["jpg", "jpeg", "png"],
+  //   public_id: uuid() + "-" + file.originalname,
+  // },
 });
 
 // console.log(cloudinary.config())
