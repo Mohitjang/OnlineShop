@@ -16,13 +16,23 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: async (req, file) => {
-    // async code using `req` and `file`
-    // ...
-    return {
-      folder: "products-data/images",
-      format: ["jpg", "jpeg", "png"],
-      public_id: uuid() + "-" + file.originalname,
-    };
+    try {
+      // Perform asynchronous operations
+      // For example, generating a unique public_id using uuid
+      const public_id = uuid() + "-" + file.originalname;
+
+      // Wait for asynchronous operations to complete
+      // Then return the parameters object
+      return {
+        folder: folder,
+        format: ["jpg", "jpeg", "png"],
+        public_id: public_id,
+      };
+    } catch (error) {
+      // Handle errors gracefully
+      console.error("Error generating Cloudinary params:", error);
+      throw error; // Rethrow the error to propagate it
+    }
   },
   // params: {
   //   folder: "products-data/images",
