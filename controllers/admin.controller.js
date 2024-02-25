@@ -15,13 +15,15 @@ async function getProducts(req, res, next) {
 }
 
 function getNewProduct(req, res) {
-  res.render("../views/admin/products/new-product"); 
+  res.render("../views/admin/products/new-product");
 }
 
 async function createNewProduct(req, res, next) {
+  console.log(req.file.filename);
   const productData = {
     ...req.body,
     image: req.file.filename,
+    imageUrl: req.cloudinaryUrl,
   };
 
   const newProduct = new Product(productData);
@@ -55,7 +57,7 @@ async function updateProduct(req, res, next) {
 
   if (req.file) {
     // replace the old image with new image
-    product.replaceImage(req.file.filename);
+    product.replaceImage(req.file.filename, req.cloudinaryUrl);
   }
   try {
     // console.log(product);

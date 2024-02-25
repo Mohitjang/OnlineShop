@@ -8,7 +8,8 @@ class Product {
     this.description = productData.description;
     this.price = +productData.price;
     this.image = productData.image; // the name of the image file
-    this.updateImageData();
+    this.imageUrl = productData.imageUrl;
+    // this.updateImageData();
     if (productData._id) {
       this.id = productData._id.toString();
     }
@@ -55,6 +56,7 @@ class Product {
       price: this.price,
       description: this.description,
       image: this.image,
+      imageUrl: this.imageUrl,
     };
 
     if (this.id) {
@@ -62,6 +64,7 @@ class Product {
 
       if (!this.image) {
         delete productData.image;
+        delete productData.imageUrl;
       }
 
       const result = await db.getDb().collection("products").updateOne(
@@ -80,16 +83,17 @@ class Product {
     }
   }
 
-  updateImageData() {
-    this.imagePath = `product-data/images/${this.image}`;
-    this.imageUrl = `/products/assets/images/${this.image}`;
+  // updateImageData() {
+  //   // this.imagePath = `product-data/images/${this.image}`;
+  //   this.imageUrl = `/products/assets/images/${this.image}`;
+  //   // here we have to put the cloudinary related path
+  // }
+
+  replaceImage(newImage, newImageUrl) {
+    this.image = newImage;
+    this.imageUrl = newImageUrl;
   }
 
-  replaceImage(newImage) {
-    this.image = newImage;
-    this.updateImageData();
-  }
-  
   static async delete(prodId) {
     let productId;
     try {
@@ -103,7 +107,6 @@ class Product {
 
     console.log("product deleted successfully!");
   }
-
 }
 
 module.exports = Product;
