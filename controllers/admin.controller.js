@@ -19,17 +19,22 @@ function getNewProduct(req, res) {
 }
 
 async function createNewProduct(req, res, next) {
-  console.log(req.file.filename);
+
+  console.log("create new product is running: ",req.file.filename);
+  console.log("req.file.filename: ",req.file.filename);
   const productData = {
     ...req.body,
     image: req.file.filename,
     imageUrl: req.cloudinaryUrl,
   };
 
+
   const newProduct = new Product(productData);
   // console.log(req.body);
   // console.log(req.file);
   try {
+    console.log("image file name / req.file.filename : ",req.file.filename)
+    console.log("image url / req.cloudinaryUrl : ",req.cloudinaryUrl)
     await newProduct.save();
   } catch (error) {
     next(error);

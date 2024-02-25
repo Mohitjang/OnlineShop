@@ -47,6 +47,8 @@ const configuredMulterMiddleware = async (req, res, next) => {
       }
 
       // Upload the file to Cloudinary
+      console.log("fileUploadMiddleware is running:");
+      console.log("req.file.path (which is uploaded on cloudinary) :  ", req.file.path);
       const cloudinaryResponse = await uploadOnCloudinary(req.file.path);
       if (!cloudinaryResponse) {
         return res
