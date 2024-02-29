@@ -24,8 +24,8 @@ async function createNewProduct(req, res, next) {
 
   console.log("create new product is running: ");
   console.log("req.file.filename: ", req.file.filename);
-  console.log("req.imageName: ", req.imageName);
-  console.log("req.cloudinaryUrl: ", req.cloudinaryUrl);
+  // console.log("req.imageName: ", req.imageName);
+  // console.log("req.cloudinaryUrl: ", req.cloudinaryUrl);
   const productData = {
     ...req.body,
     image: req.file.filename,
@@ -65,7 +65,7 @@ async function updateProduct(req, res, next) {
 
   if (req.file) {
     // replace the old image with new image
-    product.replaceImage(req.file.filename, req.cloudinaryUrl);
+    product.replaceImage(req.file.filename, req.file.path);
   }
   try {
     // console.log(product);
